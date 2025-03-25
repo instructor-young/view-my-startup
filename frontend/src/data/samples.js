@@ -6,8 +6,18 @@ export const allStartUps = {
       flex: 2,
       formatter: (value) => `${value}위`,
     },
-    { name: "name", label: "기업명", flex: 6 },
-    { name: "description", label: "기업 소개", flex: 9 },
+    {
+      name: "name",
+      label: "기업명",
+      flex: 6,
+      getHref: (row) => `/startup/${row.id}`,
+    },
+    {
+      name: "description",
+      label: "기업 소개",
+      flex: 9,
+      getHref: (row) => `/startup/${row.id}`,
+    },
     { name: "category", label: "카테고리", flex: 5 },
     {
       name: "fund",
@@ -30,136 +40,114 @@ export const allStartUps = {
   ],
   rows: [
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fund: 10,
-        sales: 28,
-        employees: 68,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fund: 10,
+      sales: 28,
+      employees: 68,
     },
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fund: 10,
-        sales: 28,
-        employees: 68,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fund: 10,
+      sales: 28,
+      employees: 68,
     },
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fund: 10,
-        sales: 28,
-        employees: 68,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fund: 10,
+      sales: 28,
+      employees: 68,
     },
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fund: 10,
-        sales: 28,
-        employees: 68,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fund: 10,
+      sales: 28,
+      employees: 68,
     },
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fund: 10,
-        sales: 28,
-        employees: 68,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fund: 10,
+      sales: 28,
+      employees: 68,
     },
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fund: 10,
-        sales: 28,
-        employees: 68,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fund: 10,
+      sales: 28,
+      employees: 68,
     },
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fund: 10,
-        sales: 28,
-        employees: 68,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fund: 10,
+      sales: 28,
+      employees: 68,
     },
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fund: 10,
-        sales: 28,
-        employees: 68,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fund: 10,
+      sales: 28,
+      employees: 68,
     },
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fund: 10,
-        sales: 28,
-        employees: 68,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fund: 10,
+      sales: 28,
+      employees: 68,
     },
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fund: 10,
-        sales: 28,
-        employees: 68,
-      },
-    },
-    {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fund: 10,
-        sales: 28,
-        employees: 68,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fund: 10,
+      sales: 28,
+      employees: 68,
     },
   ],
 };
@@ -172,8 +160,18 @@ export const investments = {
       flex: 2,
       formatter: (value) => `${value}위`,
     },
-    { name: "name", label: "기업명", flex: 6 },
-    { name: "description", label: "기업 소개", flex: 9 },
+    {
+      name: "name",
+      label: "기업명",
+      flex: 6,
+      getHref: (row) => `/startup/${row.id}`,
+    },
+    {
+      name: "description",
+      label: "기업 소개",
+      flex: 9,
+      getHref: (row) => `/startup/${row.id}`,
+    },
     { name: "category", label: "카테고리", flex: 5 },
     {
       name: "fundSimulation",
@@ -190,135 +188,104 @@ export const investments = {
   ],
   rows: [
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fundSimulation: 100,
-        fund: 10,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fundSimulation: 100,
+      fund: 10,
     },
-
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fundSimulation: 100,
-        fund: 10,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fundSimulation: 100,
+      fund: 10,
     },
-
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fundSimulation: 100,
-        fund: 10,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fundSimulation: 100,
+      fund: 10,
     },
-
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fundSimulation: 100,
-        fund: 10,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fundSimulation: 100,
+      fund: 10,
     },
-
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fundSimulation: 100,
-        fund: 10,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fundSimulation: 100,
+      fund: 10,
     },
-
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fundSimulation: 100,
-        fund: 10,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fundSimulation: 100,
+      fund: 10,
     },
-
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fundSimulation: 100,
-        fund: 10,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fundSimulation: 100,
+      fund: 10,
     },
-
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fundSimulation: 100,
-        fund: 10,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fundSimulation: 100,
+      fund: 10,
     },
-
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fundSimulation: 100,
-        fund: 10,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fundSimulation: 100,
+      fund: 10,
     },
-
     {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fundSimulation: 100,
-        fund: 10,
-      },
-    },
-
-    {
-      values: {
-        ranking: 1,
-        name: "코드잇",
-        description:
-          "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-        category: "에듀테크",
-        fundSimulation: 100,
-        fund: 10,
-      },
+      id: 1,
+      ranking: 1,
+      name: "코드잇",
+      description:
+        "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
+      category: "에듀테크",
+      fundSimulation: 100,
+      fund: 10,
     },
   ],
 };

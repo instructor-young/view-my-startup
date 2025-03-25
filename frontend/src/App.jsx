@@ -4,6 +4,7 @@ import CompareDashboardPage from "./pages/CompareDashboardPage";
 import CompareMyStartupsPage from "./pages/CompareMyStartupsPage";
 import DashboardPage from "./pages/DashboardPage";
 import HomePage from "./pages/HomePage";
+import StartupDetailPage from "./pages/StartupDetailPage";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/startup/:startupId" element={<StartupDetailPage />} />
           <Route
             path="/compare/my-startups"
             element={<CompareMyStartupsPage />}
