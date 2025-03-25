@@ -1,8 +1,14 @@
+import SearchInput from "./SearchInput";
+
 function AllStartupsTable() {
   return (
     <section>
       <header className="mb-4">
-        <h2 className="text-white font-bold text-xl">전체 스타트업 목록</h2>
+        <div className="flex justify-between items-center">
+          <h2 className="text-white font-bold text-xl">전체 스타트업 목록</h2>
+
+          <SearchInput />
+        </div>
       </header>
 
       <div>
@@ -26,7 +32,7 @@ function AllStartupsTable() {
         </div>
 
         {/* 테이블 바디 */}
-        <div className="bg-black-100 text-white rounded-sm text-sm mt-4">
+        <div className="bg-black-300 text-white rounded-sm text-sm mt-4">
           {Array(10)
             .fill(0)
             .map((_, i) => (
