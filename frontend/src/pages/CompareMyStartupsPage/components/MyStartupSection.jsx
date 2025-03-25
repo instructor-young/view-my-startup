@@ -2,7 +2,7 @@ import PlusButtonIcon from "../../../assets/icon/ic_plus_btn.png";
 
 function MyStartupSection() {
   return (
-    <section className="mt-20">
+    <section className="mt-10">
       <h2 className="font-bold text-xl text-white">
         나의 기업을 선택해 주세요!
       </h2>

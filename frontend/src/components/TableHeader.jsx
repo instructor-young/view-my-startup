@@ -21,6 +21,7 @@ function TableHeader({ columns }) {
     <div className="bg-black-100 text-white h-10 flex rounded-sm text-sm font-medium">
       {columns.map((column) => (
         <div
+          key={column.name}
           className={cx(
             "flex items-center justify-center",
             getFlexClassname(column.flex)
