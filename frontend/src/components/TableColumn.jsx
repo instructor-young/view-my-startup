@@ -28,7 +28,11 @@ function TableColumn({ column, row }) {
         getFlexClassname(column.flex)
       )}
     >
-      {column.formatter ? column.formatter(row[column.name]) : row[column.name]}
+      {column.renderCell
+        ? column.renderCell(row, column)
+        : column.formatter
+        ? column.formatter(row[column.name])
+        : row[column.name]}
     </TagName>
   );
 }

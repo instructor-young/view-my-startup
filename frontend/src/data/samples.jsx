@@ -11,6 +11,12 @@ export const allStartUps = {
       label: "기업명",
       flex: 6,
       getHref: (row) => `/startup/${row.id}`,
+      renderCell: (row, column) => (
+        <div className="flex items-center gap-x-3">
+          <div className="w-8 h-8 bg-amber-200 rounded-full" />
+          {row[column.name]}
+        </div>
+      ),
     },
     {
       name: "description",
@@ -165,6 +171,12 @@ export const investments = {
       label: "기업명",
       flex: 6,
       getHref: (row) => `/startup/${row.id}`,
+      renderCell: (row, column) => (
+        <div className="flex items-center gap-x-3">
+          <div className="w-8 h-8 bg-amber-200 rounded-full" />
+          {row[column.name]}
+        </div>
+      ),
     },
     {
       name: "description",
@@ -321,35 +333,35 @@ export const startupDetail = {
       ranking: 1,
       amount: 10,
       comment:
-        "코드잇 FS 6기의 주강사는 정말 훌륭한 강사입니다! 여러분의 성장 가능성은 무궁무진합니다!",
+        "코드잇 FS 6기의 주강사는 정말 잘 가르칩니다! 여러분의 성장 가능성은 무궁무진합니다!",
     },
     {
       investorName: "유진영",
       ranking: 1,
       amount: 10,
       comment:
-        "코드잇 FS 6기의 주강사는 정말 훌륭한 강사입니다! 여러분의 성장 가능성은 무궁무진합니다!",
+        "코드잇 FS 6기의 주강사는 정말 잘 가르칩니다! 여러분의 성장 가능성은 무궁무진합니다!",
     },
     {
       investorName: "유진영",
       ranking: 1,
       amount: 10,
       comment:
-        "코드잇 FS 6기의 주강사는 정말 훌륭한 강사입니다! 여러분의 성장 가능성은 무궁무진합니다!",
+        "코드잇 FS 6기의 주강사는 정말 잘 가르칩니다! 여러분의 성장 가능성은 무궁무진합니다!",
     },
     {
       investorName: "유진영",
       ranking: 1,
       amount: 10,
       comment:
-        "코드잇 FS 6기의 주강사는 정말 훌륭한 강사입니다! 여러분의 성장 가능성은 무궁무진합니다!",
+        "코드잇 FS 6기의 주강사는 정말 잘 가르칩니다! 여러분의 성장 가능성은 무궁무진합니다!",
     },
     {
       investorName: "유진영",
       ranking: 1,
       amount: 10,
       comment:
-        "코드잇 FS 6기의 주강사는 정말 훌륭한 강사입니다! 여러분의 성장 가능성은 무궁무진합니다!",
+        "코드잇 FS 6기의 주강사는 정말 잘 가르칩니다! 여러분의 성장 가능성은 무궁무진합니다!",
     },
   ],
 };
