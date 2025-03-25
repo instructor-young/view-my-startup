@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router";
 import LogoLarge from "../assets/img/logo-lg.png";
 import NavItem from "./NavItem";
@@ -14,13 +13,13 @@ function Header() {
         <nav className="ml-10 ">
           <ul className="flex items-center gap-x-8">
             <li>
-              <NavItem to="/" label="나의 기업 비교" />
+              <NavItem to="/compare/my-startups" label="나의 기업 비교" />
             </li>
             <li>
-              <NavItem to="/" label="비교 현황" />
+              <NavItem to="/compare/dashboard" label="비교 현황" />
             </li>
             <li>
-              <NavItem to="/" label="투자 현황" />
+              <NavItem to="/dashboard" label="투자 현황" />
             </li>
           </ul>
         </nav>
