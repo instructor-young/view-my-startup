@@ -1,5 +1,40 @@
+import { allStartUps } from "../data/samples";
 import Pagination from "./Pagination";
 import SearchInput from "./SearchInput";
+import TableBody from "./TableBody";
+import TableHeader from "./TableHeader";
+
+const columns = [
+  {
+    name: "ranking",
+    label: "순위",
+    flex: 2,
+    formatter: (value) => `${value}위`,
+  },
+  { name: "name", label: "기업명", flex: 6 },
+  { name: "description", label: "기업 소개", flex: 9 },
+  { name: "category", label: "카테고리", flex: 5 },
+  {
+    name: "fund",
+    label: "누적 투자 금액",
+    flex: 5,
+    formatter: (value) => `${value}억 원`,
+  },
+  {
+    name: "sales",
+    label: "매출액",
+    flex: 5,
+    formatter: (value) => `${value}억 원`,
+  },
+  {
+    name: "employees",
+    label: "고용 인원",
+    flex: 5,
+    formatter: (value) => `${value}명`,
+  },
+];
+
+const rows = allStartUps;
 
 function AllStartupsTable() {
   return (
@@ -14,26 +49,11 @@ function AllStartupsTable() {
 
       <div>
         {/* 테이블 헤더 */}
-        <div className="bg-black-100 text-white h-10 flex rounded-sm text-sm font-medium">
-          <div className="flex items-center justify-center flex-2">순위</div>
-          <div className="flex items-center justify-center flex-6">기업명</div>
-          <div className="flex items-center justify-center flex-9">
-            기업 소개
-          </div>
-          <div className="flex items-center justify-center flex-5">
-            카테고리
-          </div>
-          <div className="flex items-center justify-center flex-5">
-            누적 투자 금액
-          </div>
-          <div className="flex items-center justify-center flex-5">매출액</div>
-          <div className="flex items-center justify-center flex-5">
-            고용 인원
-          </div>
-        </div>
+        <TableHeader columns={columns} />
+        <TableBody columns={columns} rows={rows} />
 
         {/* 테이블 바디 */}
-        <div className="bg-black-300 text-white rounded-sm text-sm mt-4">
+        {/* <div className="bg-black-300 text-white rounded-sm text-sm mt-4">
           {Array(10)
             .fill(0)
             .map((_, i) => (
@@ -62,7 +82,7 @@ function AllStartupsTable() {
                 </div>
               </div>
             ))}
-        </div>
+        </div> */}
         <div className="mt-10 flex justify-center">
           <Pagination />
         </div>
