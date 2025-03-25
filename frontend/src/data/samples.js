@@ -289,3 +289,67 @@ export const investments = {
     },
   ],
 };
+
+export const startupDetail = {
+  column: [
+    {
+      name: "investorName",
+      label: "투자자 이름",
+      flex: 1,
+    },
+    {
+      name: "ranking",
+      label: "순위",
+      flex: 1,
+      formatter: (value) => `${value}위`,
+    },
+    {
+      name: "amount",
+      label: "투자 금액",
+      flex: 1,
+      formatter: (value) => `${value}억 원`,
+    },
+    {
+      name: "comment",
+      label: "투자 코멘트",
+      flex: 9,
+    },
+  ],
+  rows: [
+    {
+      investorName: "유진영",
+      ranking: 1,
+      amount: 10,
+      comment:
+        "코드잇 FS 6기의 주강사는 정말 훌륭한 강사입니다! 여러분의 성장 가능성은 무궁무진합니다!",
+    },
+    {
+      investorName: "유진영",
+      ranking: 1,
+      amount: 10,
+      comment:
+        "코드잇 FS 6기의 주강사는 정말 훌륭한 강사입니다! 여러분의 성장 가능성은 무궁무진합니다!",
+    },
+    {
+      investorName: "유진영",
+      ranking: 1,
+      amount: 10,
+      comment:
+        "코드잇 FS 6기의 주강사는 정말 훌륭한 강사입니다! 여러분의 성장 가능성은 무궁무진합니다!",
+    },
+    {
+      investorName: "유진영",
+      ranking: 1,
+      amount: 10,
+      comment:
+        "코드잇 FS 6기의 주강사는 정말 훌륭한 강사입니다! 여러분의 성장 가능성은 무궁무진합니다!",
+    },
+    {
+      investorName: "유진영",
+      ranking: 1,
+      amount: 10,
+      comment:
+        "코드잇 FS 6기의 주강사는 정말 훌륭한 강사입니다! 여러분의 성장 가능성은 무궁무진합니다!",
+    },
+  ],
+};

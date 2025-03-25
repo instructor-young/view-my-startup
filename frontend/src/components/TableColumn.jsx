@@ -24,6 +24,7 @@ function TableColumn({ column, row }) {
       to={column.getHref ? column.getHref(row) : undefined}
       className={cx(
         "flex items-center justify-center h-16",
+        column.getHref && "text-white",
         getFlexClassname(column.flex)
       )}
     >

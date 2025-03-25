@@ -1,11 +1,12 @@
 import Page from "../../components/Page";
+import FundsOnViewMyStartup from "./components/FundsOnViewMyStartup";
 import IndexBox from "./components/IndexBox";
 
 function StartupDetailPage() {
   return (
     <Page>
       {/* 헤더 */}
-      <header className="flex space-x-5 items-center pb-8 border-b border-black-100">
+      <section className="flex space-x-5 items-center pb-8 border-b border-black-100">
         <div className="w-20 aspect-square bg-amber-200 rounded-full"></div>
         <div className="space-y-2">
           <h1 className="text-white font-bold text-2xl">코드잇</h1>
@@ -13,16 +14,17 @@ function StartupDetailPage() {
             에듀테크
           </strong>
         </div>
-      </header>
+      </section>
+
       {/* 지표들 */}
-      <div className="grid grid-cols-3 gap-x-6 mt-8">
+      <section className="grid grid-cols-3 gap-x-6 mt-8">
         <IndexBox label="누적 투자 금액" value={"140억 원"} />
-        <IndexBox label="누적 투자 금액" value={"140억 원"} />
-        <IndexBox label="누적 투자 금액" value={"140억 원"} />
-      </div>
+        <IndexBox label="매출액" value={"44.3억 원"} />
+        <IndexBox label="고용 인원" value={"95명"} />
+      </section>
 
       {/* 기업 소개 */}
-      <div className="mt-8 p-6 bg-black-300 rounded-[10px]">
+      <section className="mt-8 p-6 bg-black-300 rounded-[10px]">
         <h2 className="font-semibold text-white mb-4">기업 소개</h2>
         <p className="whitespace-pre-wrap text-gray-100 text-sm">
           {`코드잇은 '온라인 코딩 교육 서비스'를 운영하는 EdTech 스타트업입니다.
@@ -35,7 +37,9 @@ function StartupDetailPage() {
 
 이것이 코드잇의 비전입니다. 현재는 최고의 코딩 교육 서비스를 국내에서 제공하고 있지만, 이보다 더 큰 그림을 그리고 있습니다. 2021년 상반기부터 영어권 시장 진출을 시작했고, 코딩과 인접한 분야부터 스펙트럼을 넓혀 나갈 계획입니다.`}
         </p>
-      </div>
+      </section>
+
+      <FundsOnViewMyStartup />
     </Page>
   );
 }
