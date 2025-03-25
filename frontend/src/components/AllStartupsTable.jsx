@@ -1,3 +1,4 @@
+import Pagination from "./Pagination";
 import SearchInput from "./SearchInput";
 
 function AllStartupsTable() {
@@ -61,6 +62,9 @@ function AllStartupsTable() {
                 </div>
               </div>
             ))}
+        </div>
+        <div className="mt-10 flex justify-center">
+          <Pagination />
         </div>
       </div>
     </section>
