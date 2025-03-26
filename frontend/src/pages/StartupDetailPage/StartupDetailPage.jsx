@@ -46,6 +46,7 @@ function StartupDetailPage() {
         </p>
       </section>
 
+      {/* View My Startup에서 받은 투자 */}
       <FundsOnViewMyStartup />
     </Page>
   );

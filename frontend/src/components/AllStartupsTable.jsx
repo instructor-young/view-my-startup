@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../api/index.api";
+import Dropdown from "./Dropdown";
 import SearchInput from "./SearchInput";
 import Table from "./Table";
 
@@ -49,8 +50,18 @@ const columns = [
   },
 ];
 
+const sortOptions = [
+  { label: "누적 투자금액 높은 순", value: "" },
+  { label: "누적 투자금액 낮은 순", value: "" },
+  { label: "매출액 높은 순", value: "" },
+  { label: "매출액 낮은 순", value: "" },
+  { label: "고용 인원 많은 순", value: "" },
+  { label: "고용 인원 낮은 순", value: "" },
+];
+
 function AllStartupsTable() {
   const [startups, setStartups] = useState([]);
+  const [selectedSortOption, setSelectedSortOption] = useState(sortOptions[0]);
 
   useEffect(() => {
     API.companies
@@ -59,15 +70,21 @@ function AllStartupsTable() {
       .then(setStartups);
   }, []);
 
-  console.log(startups);
-
   return (
     <section>
       <header className="mb-4">
         <div className="flex justify-between items-center">
           <h2 className="text-white font-bold text-xl">전체 스타트업 목록</h2>
 
-          <SearchInput />
+          <div className="flex items-center gap-4">
+            <SearchInput />
+            <Dropdown
+              width={200}
+              options={sortOptions}
+              selectedOption={selectedSortOption}
+              setSelectedOption={setSelectedSortOption}
+            />
+          </div>
         </div>
       </header>
 
