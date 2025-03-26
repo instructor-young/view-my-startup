@@ -18,11 +18,11 @@ model Company {
   name                   String
   description            String
   category               String
-  realInvestmentAmount   Int
-  revenue                Int
+  realInvestmentAmount   Float
+  revenue                Float
   numberOfEmployees      Int
-  pickAsMyStartupCount   Int
-  pickAsComparisionCount Int
+  pickAsMyStartupCount   Int    @default(0)
+  pickAsComparisionCount Int    @default(0)
 }
 
 model Investment {

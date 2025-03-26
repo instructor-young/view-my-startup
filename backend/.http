@@ -1,0 +1,3 @@
+### 전체 스타트업 목록
+
+GET http://localhost:5555/companies
