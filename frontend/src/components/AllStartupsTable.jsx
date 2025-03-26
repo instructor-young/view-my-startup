@@ -71,7 +71,12 @@ function AllStartupsTable() {
         </div>
       </header>
 
-      <Table columns={columns} rows={startups} rowsPerPage={10} />
+      <Table
+        columns={columns}
+        rows={startups}
+        rowsPerPage={10}
+        enablePagination
+      />
     </section>
   );
 }
