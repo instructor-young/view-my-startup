@@ -11,4 +11,13 @@ companiesRouter.get("/", async (req, res, next) => {
   res.json(companies);
 });
 
+companiesRouter.get("/:companyId", async (req, res, next) => {
+  const companyId = req.params.companyId;
+  const company = await prisma.company.findUnique({
+    where: { id: companyId },
+  });
+
+  res.json(company);
+});
+
 module.exports = companiesRouter;
