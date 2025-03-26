@@ -13,7 +13,7 @@ function Dropdown({ width, options, selectedOption, setSelectedOption }) {
     <div className="flex flex-col shrink-0 relative" style={{ width }}>
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="bg-black-400 border border-gray-200 rounded-[10px] px-4 h-12 flex items-center justify-between w-full gap-x-4 cursor-pointer"
+        className="bg-black-400 hover:bg-black-300 transition border border-gray-200 rounded-[10px] px-4 h-12 flex items-center justify-between w-full gap-x-4 cursor-pointer"
       >
         <span className="shrink-0 text-gray-100 text-sm leading-none">
           {selectedOption.label}
@@ -38,7 +38,7 @@ function Dropdown({ width, options, selectedOption, setSelectedOption }) {
             >
               <button
                 onClick={handleSelect(option)}
-                className="h-10 mx-auto px-6 w-full cursor-pointer"
+                className="h-10 mx-auto px-6 w-full cursor-pointer hover:bg-black-300 transition rounded-[10px]"
               >
                 {option.label}
               </button>

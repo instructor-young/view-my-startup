@@ -6,7 +6,7 @@ function SearchInput() {
       <img src={SearchIcon} className="w-6 h-6 mr-1" />
       <input
         type="text"
-        className="text-sm text-gray-100 outline-none placeholder:text-gray-100"
+        className="text-sm text-gray-100 outline-none placeholder:text-gray-100 w-full"
         placeholder="검색어를 입력해 주세요"
       />
     </div>
