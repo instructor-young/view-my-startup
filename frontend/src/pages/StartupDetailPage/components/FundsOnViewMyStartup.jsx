@@ -1,6 +1,4 @@
 import Button from "../../../components/Button";
-import Table from "../../../components/Table";
-import { startupDetail } from "../../../data/samples";
 
 function FundsOnViewMyStartup() {
   return (
@@ -17,7 +15,7 @@ function FundsOnViewMyStartup() {
         <strong className="font-bold text-xl text-white">총 200억 원</strong>
       </div>
 
-      <Table columns={startupDetail.column} rows={startupDetail.rows} />
+      {/* <Table columns={startupDetail.column} rows={startupDetail.rows} /> */}
     </section>
   );
 }

@@ -14,22 +14,25 @@ datasource db {
 }
 
 model Company {
-  id                     String @id @default(cuid())
+  id                     String       @id @default(cuid())
   name                   String
   description            String
   category               String
   realInvestmentAmount   Float
   revenue                Float
   numberOfEmployees      Int
-  pickAsMyStartupCount   Int    @default(0)
-  pickAsComparisionCount Int    @default(0)
+  pickAsMyStartupCount   Int          @default(0)
+  pickAsComparisionCount Int          @default(0)
+  virtualInvestments     Investment[]
 }
 
 model Investment {
   id                String   @id @default(cuid())
   investorName      String
-  amount            String
+  amount            Float
   comment           String
   encryptedPassword String
   createdAt         DateTime @default(now())
+  company           Company  @relation(fields: [companyId], references: [id])
+  companyId         String
 }
