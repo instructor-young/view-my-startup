@@ -15,6 +15,8 @@ function Pagination({ currentPage, setCurrentPage, totalPagesLength }) {
     setCurrentPage((prev) => prev + 1);
   };
 
+  const goToPage = (page) => () => setCurrentPage(page);
+
   return (
     <div className="flex items-center gap-x-2 text-lg text-gray-200">
       <PaginationButton onClick={goToPrevPage}>
@@ -24,7 +26,10 @@ function Pagination({ currentPage, setCurrentPage, totalPagesLength }) {
         {Array(totalPagesLength)
           .fill(0)
           .map((_, index) => (
-            <PaginationButton isActive={index + 1 === currentPage}>
+            <PaginationButton
+              isActive={index + 1 === currentPage}
+              onClick={goToPage(index + 1)}
+            >
               {index + 1}
             </PaginationButton>
           ))}
