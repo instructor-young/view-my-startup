@@ -27,7 +27,6 @@ const columns = [
     name: "description",
     label: "기업 소개",
     flex: 9,
-    getHref: (row) => `/startup/${row.id}`,
   },
   { name: "category", label: "카테고리", flex: 5 },
   {
