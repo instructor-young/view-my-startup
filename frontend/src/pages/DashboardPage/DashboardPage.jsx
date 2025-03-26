@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import API from "../../api/index.api";
 import Dropdown from "../../components/Dropdown";
 import Page from "../../components/Page";
@@ -44,10 +44,16 @@ const columns = [
 ];
 
 const sortOptions = [
-  { label: "View My Startup 투자 금액 높은 순", value: "" },
-  { label: "View My Startup 투자 금액 낮은 순", value: "" },
-  { label: "실제 누적 투자금액 높은 순", value: "" },
-  { label: "실제 누적 투자금액 낮은 순", value: "" },
+  {
+    label: "View My Startup 투자 금액 높은 순",
+    value: "totalVirtualInvestmentAmount,desc",
+  },
+  {
+    label: "View My Startup 투자 금액 낮은 순",
+    value: "totalVirtualInvestmentAmount,asc",
+  },
+  { label: "실제 누적 투자금액 높은 순", value: "realInvestmentAmount,desc" },
+  { label: "실제 누적 투자금액 낮은 순", value: "realInvestmentAmount,asc" },
 ];
 
 function DashboardPage() {
@@ -55,11 +61,38 @@ function DashboardPage() {
   const [selectedSortOption, setSelectedSortOption] = useState(sortOptions[0]);
 
   useEffect(() => {
-    API.companies
-      .getCompanies()
-      .then((companies) => companies.map((c, i) => ({ ranking: i + 1, ...c })))
-      .then(setStartups);
+    API.companies.getCompanies().then(setStartups);
   }, []);
+
+  const sortedStartups = useMemo(() => {
+    let newStartUps = [];
+
+    if (selectedSortOption.value === "totalVirtualInvestmentAmount,desc") {
+      newStartUps = [...startups].sort(
+        (a, b) =>
+          b.totalVirtualInvestmentAmount - a.totalVirtualInvestmentAmount
+      );
+    } else if (
+      selectedSortOption.value === "totalVirtualInvestmentAmount,asc"
+    ) {
+      newStartUps = [...startups].sort(
+        (a, b) =>
+          a.totalVirtualInvestmentAmount - b.totalVirtualInvestmentAmount
+      );
+    } else if (selectedSortOption.value === "realInvestmentAmount,desc") {
+      newStartUps = [...startups].sort(
+        (a, b) => b.realInvestmentAmount - a.realInvestmentAmount
+      );
+    } else if (selectedSortOption.value === "realInvestmentAmount,asc") {
+      newStartUps = [...startups].sort(
+        (a, b) => a.realInvestmentAmount - b.realInvestmentAmount
+      );
+    }
+
+    newStartUps = newStartUps.map((c, i) => ({ ranking: i + 1, ...c }));
+
+    return newStartUps;
+  }, [startups, selectedSortOption]);
 
   return (
     <Page>
@@ -78,7 +111,7 @@ function DashboardPage() {
 
       <Table
         columns={columns}
-        rows={startups}
+        rows={sortedStartups}
         enablePagination
         rowsPerPage={10}
       />
