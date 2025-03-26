@@ -12,3 +12,24 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Company {
+  id                     String @id @default(cuid())
+  name                   String
+  description            String
+  category               String
+  realInvestmentAmount   Int
+  revenue                Int
+  numberOfEmployees      Int
+  pickAsMyStartupCount   Int
+  pickAsComparisionCount Int
+}
+
+model Investment {
+  id                String   @id @default(cuid())
+  investorName      String
+  amount            String
+  comment           String
+  encryptedPassword String
+  createdAt         DateTime @default(now())
+}
