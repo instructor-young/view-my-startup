@@ -19,19 +19,49 @@ const buttonVariants = cva("leading-none cursor-pointer", {
       true: "bg-black-100 text-gray-200 cursor-not-allowed",
       false: "",
     },
+    outline: {
+      true: "",
+      false: "",
+    },
   },
+  compoundVariants: [
+    {
+      intent: "primary",
+      outline: true,
+      className:
+        "!text-brand-orange !border-brand-orange !bg-transparent border",
+    },
+  ],
   defaultVariants: {
     intent: "primary",
     rounded: true,
     size: "md",
     disabled: false,
+    outline: false,
   },
 });
 
-function Button({ intent, children, rounded, size, disabled, className }) {
+function Button({
+  intent,
+  children,
+  rounded,
+  size,
+  disabled,
+  outline,
+  className,
+  ...props
+}) {
   return (
     <button
-      className={buttonVariants({ intent, rounded, size, disabled, className })}
+      className={buttonVariants({
+        intent,
+        rounded,
+        size,
+        disabled,
+        outline,
+        className,
+      })}
+      {...props}
     >
       {children}
     </button>

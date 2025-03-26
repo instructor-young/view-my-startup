@@ -1,6 +1,16 @@
 import Button from "../../../components/Button";
+import { useModal } from "../../../contexts/modal.context";
+import NewInvestmentModal from "./NewInvestmentModal";
 
 function FundsOnViewMyStartup({ startup }) {
+  const modal = useModal();
+
+  const handleClickInvest = async () => {
+    await modal.open((close) => (
+      <NewInvestmentModal startup={startup} close={close} />
+    ));
+  };
+
   return (
     <section className="mt-8">
       <div className="flex justify-between items-center mb-6">
@@ -8,7 +18,7 @@ function FundsOnViewMyStartup({ startup }) {
           View My Startup에서 받은 투자
         </h2>
 
-        <Button>기업 투자하기</Button>
+        <Button onClick={handleClickInvest}>기업 투자하기</Button>
       </div>
 
       <p className="mt-[120px] text-gray-200 text-sm whitespace-pre-wrap text-center">{`아직 투자한 기업이 없어요.\n버튼을 눌러 기업에 투자해 보세요!`}</p>
