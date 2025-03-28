@@ -29,6 +29,9 @@ const columns = [
     name: "description",
     label: "기업 소개",
     flex: 9,
+    renderCell: (row, column) => (
+      <p className="line-clamp-2">{row[column.name]}</p>
+    ),
   },
   { name: "category", label: "카테고리", flex: 5 },
   {
@@ -77,7 +80,7 @@ function HomePage() {
   useEffect(() => {}, [searchParams]);
 
   const filteredStartups = useMemo(() => {
-    const query = searchParams.get("query");
+    const query = searchParams.get("query") || "";
     const newStartUps = startups.filter(
       (startup) =>
         startup.name.includes(query) ||

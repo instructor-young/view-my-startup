@@ -28,6 +28,9 @@ const columns = [
     name: "description",
     label: "기업 소개",
     flex: 9,
+    renderCell: (row, column) => (
+      <p className="line-clamp-2">{row[column.name]}</p>
+    ),
   },
   { name: "category", label: "카테고리", flex: 5 },
   {
