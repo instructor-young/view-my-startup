@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router";
 import Pagination from "./Pagination";
 import TableBody from "./TableBody";
 import TableHeader from "./TableHeader";
 
 function Table({ columns, rows, rowsPerPage, enablePagination }) {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams] = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(
+    Number(searchParams.get("page")) || 1
+  );
   const [currentPageRows, setCurrentPageRows] = useState([]);
   const totalPagesLength = Math.ceil(rows.length / rowsPerPage);
 

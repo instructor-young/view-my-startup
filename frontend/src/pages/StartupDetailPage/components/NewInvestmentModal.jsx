@@ -27,6 +27,7 @@ function NewInvestmentModal({ close, startup }) {
         <TextInput
           label={"투자자 이름"}
           placeholder={"투자자 이름을 입력해 주세요"}
+          autoFocus
         />
 
         <TextInput
