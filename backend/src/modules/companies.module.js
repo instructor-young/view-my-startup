@@ -20,6 +20,12 @@ companiesRouter.get("/:companyId", async (req, res, next) => {
   const companyId = req.params.companyId;
   const company = await prisma.company.findUnique({
     where: { id: companyId },
+    include: {
+      virtualInvestments: {
+        omit: { encryptedPassword: true },
+        orderBy: { amount: "desc" },
+      },
+    },
   });
 
   res.json(company);

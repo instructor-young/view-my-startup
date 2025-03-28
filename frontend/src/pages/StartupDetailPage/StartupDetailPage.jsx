@@ -13,6 +13,10 @@ function StartupDetailPage() {
     API.companies.getCompany(companyId).then(setStartUp);
   }, [companyId]);
 
+  const refetchStartup = () => {
+    API.companies.getCompany(companyId).then(setStartUp);
+  };
+
   if (!startup) return null;
 
   return (
@@ -47,7 +51,10 @@ function StartupDetailPage() {
       </section>
 
       {/* View My Startup에서 받은 투자 */}
-      <FundsOnViewMyStartup startup={startup} />
+      <FundsOnViewMyStartup
+        startup={startup}
+        onInvestSuccess={refetchStartup}
+      />
     </Page>
   );
 }

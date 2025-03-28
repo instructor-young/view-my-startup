@@ -1,13 +1,47 @@
 import Button from "../../../components/Button";
+import Table from "../../../components/Table";
 import { useModal } from "../../../contexts/modal.context";
 import NewInvestmentModal from "./NewInvestmentModal";
 
-function FundsOnViewMyStartup({ startup }) {
+const columns = [
+  {
+    name: "investorName",
+    label: "투자자 이름",
+    flex: 1,
+  },
+  {
+    name: "ranking",
+    label: "순위",
+    flex: 1,
+    formatter: (value) => `${value}위`,
+  },
+  {
+    name: "amount",
+    label: "투자 금액",
+    flex: 1,
+    formatter: (value) => `${value}억 원`,
+  },
+  { name: "comment", label: "투자 코멘트", flex: 11 },
+];
+
+function FundsOnViewMyStartup({ startup, onInvestSuccess }) {
   const modal = useModal();
+  const investments = startup.virtualInvestments.map((investment, index) => ({
+    ranking: index + 1,
+    ...investment,
+  }));
+  const totalAmount = investments.reduce(
+    (prev, current) => prev + current.amount,
+    0
+  );
 
   const handleClickInvest = async () => {
     await modal.open((close) => (
-      <NewInvestmentModal startup={startup} close={close} />
+      <NewInvestmentModal
+        startup={startup}
+        close={close}
+        onInvestSuccess={onInvestSuccess}
+      />
     ));
   };
 
@@ -21,15 +55,21 @@ function FundsOnViewMyStartup({ startup }) {
         <Button onClick={handleClickInvest}>기업 투자하기</Button>
       </div>
 
-      <p className="mt-[120px] text-gray-200 text-sm whitespace-pre-wrap text-center">{`아직 투자한 기업이 없어요.\n버튼을 눌러 기업에 투자해 보세요!`}</p>
+      {investments.length === 0 && (
+        <p className="mt-[120px] text-gray-200 text-sm whitespace-pre-wrap text-center">{`아직 투자한 기업이 없어요.\n버튼을 눌러 기업에 투자해 보세요!`}</p>
+      )}
 
-      {/* <div>
-        <div className="py-4 border-t border-black-100">
-          <strong className="font-bold text-xl text-white">총 200억 원</strong>
+      {investments.length > 0 && (
+        <div>
+          <div className="py-4 border-t border-black-100">
+            <strong className="font-bold text-xl text-white">
+              총 {totalAmount}억 원
+            </strong>
+          </div>
+
+          <Table columns={columns} rows={investments} />
         </div>
-
-        <Table columns={startupDetail.column} rows={startupDetail.rows} />
-      </div> */}
+      )}
     </section>
   );
 }
