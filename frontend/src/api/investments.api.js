@@ -7,8 +7,18 @@ async function invest(dto) {
   return data;
 }
 
+async function deleteInvestment(investmentId, password) {
+  const response = await apiClient.delete(`/investments/${investmentId}`, {
+    data: { password },
+  });
+  const data = response.data;
+
+  return data;
+}
+
 const investmentsAPI = {
   invest,
+  deleteInvestment,
 };
 
 export default investmentsAPI;

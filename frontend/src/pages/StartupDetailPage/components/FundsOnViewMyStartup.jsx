@@ -29,17 +29,22 @@ const columns = [
     renderCell: (row, column) => (
       <div className="flex items-center justify-between w-full">
         <p className="px-4">{row[column.name]}</p>
-        <InvestmentKebabButton />
+        <InvestmentKebabButton
+          investmentId={row.id}
+          companyId={row.companyId}
+          refetchStartup={row.refetchStartup}
+        />
       </div>
     ),
   },
 ];
 
-function FundsOnViewMyStartup({ startup, onInvestSuccess }) {
+function FundsOnViewMyStartup({ startup, refetchStartup }) {
   const modal = useModal();
   const investments = startup.virtualInvestments.map((investment, index) => ({
     ranking: index + 1,
     ...investment,
+    refetchStartup,
   }));
   const totalAmount = investments.reduce(
     (prev, current) => prev + current.amount,
@@ -51,7 +56,7 @@ function FundsOnViewMyStartup({ startup, onInvestSuccess }) {
       <NewInvestmentModal
         startup={startup}
         close={close}
-        onInvestSuccess={onInvestSuccess}
+        onInvestSuccess={refetchStartup}
       />
     ));
   };

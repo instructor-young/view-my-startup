@@ -22,4 +22,26 @@ investmentsRouter.post("/", async (req, res, next) => {
   }
 });
 
+investmentsRouter.delete("/:investmentId", async (req, res, next) => {
+  try {
+    const { investmentId } = req.params;
+    const { password } = req.body;
+    const investment = await prisma.investment.findUnique({
+      where: { id: investmentId },
+    });
+
+    const isValid = await bcrypt.compare(
+      password,
+      investment.encryptedPassword
+    );
+    if (!isValid) throw new Error("Incorrect password");
+
+    await prisma.investment.delete({ where: { id: investmentId } });
+
+    res.status(204).send();
+  } catch (e) {
+    next(e);
+  }
+});
+
 module.exports = investmentsRouter;

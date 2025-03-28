@@ -4,6 +4,8 @@ import Button from "../../../components/Button";
 import Modal from "../../../components/Modal";
 import PasswordInput from "../../../components/PasswordInput";
 import TextInput from "../../../components/TextInput";
+import { useModal } from "../../../contexts/modal.context";
+import InvestmentSuccessModal from "./InvestmentSuccessModal";
 
 function NewInvestmentModal({ close, startup, onInvestSuccess }) {
   const [investorName, setInvestorName] = useState("");
@@ -11,6 +13,7 @@ function NewInvestmentModal({ close, startup, onInvestSuccess }) {
   const [comment, setComment] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const modal = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,8 +36,9 @@ function NewInvestmentModal({ close, startup, onInvestSuccess }) {
     };
 
     await API.investments.invest(data);
-
     close();
+
+    await modal.open((close) => <InvestmentSuccessModal close={close} />);
     onInvestSuccess();
   };
 
