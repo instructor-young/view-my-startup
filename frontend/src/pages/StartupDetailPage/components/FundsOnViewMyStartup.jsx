@@ -1,6 +1,7 @@
 import Button from "../../../components/Button";
 import Table from "../../../components/Table";
 import { useModal } from "../../../contexts/modal.context";
+import InvestmentKebabButton from "./InvestmentKebabButton";
 import NewInvestmentModal from "./NewInvestmentModal";
 
 const columns = [
@@ -21,7 +22,17 @@ const columns = [
     flex: 1,
     formatter: (value) => `${value}억 원`,
   },
-  { name: "comment", label: "투자 코멘트", flex: 11 },
+  {
+    name: "comment",
+    label: "투자 코멘트",
+    flex: 11,
+    renderCell: (row, column) => (
+      <div className="flex items-center justify-between w-full">
+        <p className="px-4">{row[column.name]}</p>
+        <InvestmentKebabButton />
+      </div>
+    ),
+  },
 ];
 
 function FundsOnViewMyStartup({ startup, onInvestSuccess }) {
