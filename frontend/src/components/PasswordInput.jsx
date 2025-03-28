@@ -24,6 +24,7 @@ function PasswordInput({ label, placeholder, value, onChange: handleChange }) {
         <button
           onClick={() => setIsVisible((prev) => !prev)}
           className="cursor-pointer"
+          tabIndex="-1"
         >
           <img
             src={isVisible ? IconVisibilityOn : IconVisibilityOff}

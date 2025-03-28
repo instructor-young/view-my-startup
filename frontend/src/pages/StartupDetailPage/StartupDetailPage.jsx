@@ -2,19 +2,24 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import API from "../../api/index.api";
 import Page from "../../components/Page";
+import { useModal } from "../../contexts/modal.context";
 import FundsOnViewMyStartup from "./components/FundsOnViewMyStartup";
 import IndexBox from "./components/IndexBox";
+import InvestmentSuccessModal from "./components/InvestmentSuccessModal";
 
 function StartupDetailPage() {
   const { startupId: companyId } = useParams();
   const [startup, setStartUp] = useState(null);
+  const modal = useModal();
 
   useEffect(() => {
     API.companies.getCompany(companyId).then(setStartUp);
   }, [companyId]);
 
-  const refetchStartup = () => {
-    API.companies.getCompany(companyId).then(setStartUp);
+  const refetchStartup = async () => {
+    await modal.open((close) => <InvestmentSuccessModal close={close} />);
+
+    await API.companies.getCompany(companyId).then(setStartUp);
   };
 
   if (!startup) return null;

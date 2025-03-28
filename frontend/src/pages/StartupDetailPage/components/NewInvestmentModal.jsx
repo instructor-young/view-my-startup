@@ -67,6 +67,7 @@ function NewInvestmentModal({ close, startup, onInvestSuccess }) {
           placeholder={"투자 금액을 입력해 주세요"}
           value={String(amount)}
           onChange={(e) => setAmount(Number(e.target.value))}
+          type="number"
         />
 
         <TextInput
