@@ -18,6 +18,7 @@ model Company {
   name                   String
   description            String
   category               String
+  logoImgUrl             String?
   realInvestmentAmount   Float
   revenue                Float
   numberOfEmployees      Int

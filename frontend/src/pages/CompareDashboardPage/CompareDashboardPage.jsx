@@ -19,7 +19,15 @@ const columns = [
     getHref: (row) => `/startup/${row.id}`,
     renderCell: (row, column) => (
       <div className="flex items-center gap-x-3 w-full px-4">
-        <div className="w-8 h-8 bg-amber-200 rounded-full" />
+        {row.logoImgUrl ? (
+          <img
+            src={row.logoImgUrl}
+            className="size-8 rounded-full object-cover"
+          />
+        ) : (
+          <div className="size-8 bg-amber-200 rounded-full" />
+        )}
+
         {row[column.name]}
       </div>
     ),

@@ -23,7 +23,15 @@ function StartupDetailPage() {
     <Page>
       {/* 헤더 */}
       <section className="flex space-x-5 items-center pb-8 border-b border-black-100">
-        <div className="w-20 aspect-square bg-amber-200 rounded-full"></div>
+        {startup.logoImgUrl ? (
+          <img
+            src={startup.logoImgUrl}
+            className="w-20 rounded-full object-cover"
+          />
+        ) : (
+          <div className="w-20 aspect-square bg-amber-200 rounded-full" />
+        )}
+
         <div className="space-y-2">
           <h1 className="text-white font-bold text-2xl">{startup.name}</h1>
           <strong className="font-medium text-xl text-gray-200">
