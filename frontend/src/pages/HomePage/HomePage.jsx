@@ -74,26 +74,40 @@ function HomePage() {
     API.companies.getAllCompanies().then(setStartups);
   }, []);
 
+  useEffect(() => {}, [searchParams]);
+
+  const filteredStartups = useMemo(() => {
+    const query = searchParams.get("query");
+    const newStartUps = startups.filter(
+      (startup) =>
+        startup.name.includes(query) ||
+        startup.description.includes(query) ||
+        startup.category.includes(query)
+    );
+
+    return newStartUps;
+  }, [searchParams, startups]);
+
   const sortedStartups = useMemo(() => {
     let newStartUps = [];
     if (selectedSortOption.value === "realInvestmentAmount,desc") {
-      newStartUps = [...startups].sort(
+      newStartUps = [...filteredStartups].sort(
         (a, b) => b.realInvestmentAmount - a.realInvestmentAmount
       );
     } else if (selectedSortOption.value === "realInvestmentAmount,asc") {
-      newStartUps = [...startups].sort(
+      newStartUps = [...filteredStartups].sort(
         (a, b) => a.realInvestmentAmount - b.realInvestmentAmount
       );
     } else if (selectedSortOption.value === "revenue,desc") {
-      newStartUps = [...startups].sort((a, b) => b.revenue - a.revenue);
+      newStartUps = [...filteredStartups].sort((a, b) => b.revenue - a.revenue);
     } else if (selectedSortOption.value === "revenue,asc") {
-      newStartUps = [...startups].sort((a, b) => a.revenue - b.revenue);
+      newStartUps = [...filteredStartups].sort((a, b) => a.revenue - b.revenue);
     } else if (selectedSortOption.value === "numberOfEmployees,desc") {
-      newStartUps = [...startups].sort(
+      newStartUps = [...filteredStartups].sort(
         (a, b) => b.numberOfEmployees - a.numberOfEmployees
       );
     } else if (selectedSortOption.value === "numberOfEmployees,asc") {
-      newStartUps = [...startups].sort(
+      newStartUps = [...filteredStartups].sort(
         (a, b) => a.numberOfEmployees - b.numberOfEmployees
       );
     }
@@ -101,7 +115,7 @@ function HomePage() {
     newStartUps = newStartUps.map((c, i) => ({ ranking: i + 1, ...c }));
 
     return newStartUps;
-  }, [startups, selectedSortOption]);
+  }, [filteredStartups, selectedSortOption]);
 
   return (
     <Page>
