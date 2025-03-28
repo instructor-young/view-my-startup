@@ -1,5 +1,12 @@
 import { apiClient } from "./index.api";
 
+async function getInvestmentsOverview(dto) {
+  const response = await apiClient.get("/investments", dto);
+  const data = response.data;
+
+  return data;
+}
+
 async function invest(dto) {
   const response = await apiClient.post("/investments", dto);
   const data = response.data;
@@ -17,6 +24,7 @@ async function deleteInvestment(investmentId, password) {
 }
 
 const investmentsAPI = {
+  getInvestmentsOverview,
   invest,
   deleteInvestment,
 };

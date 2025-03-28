@@ -4,6 +4,19 @@ const prisma = require("../db/prisma/client.prisma");
 
 const investmentsRouter = express.Router();
 
+investmentsRouter.get("/", async (req, res, next) => {
+  const companies = await prisma.$queryRaw`
+  SELECT
+    c.*,
+    COALESCE(SUM(i.amount), 0) AS "totalVirtualInvestmentAmount"
+  FROM "Company" c
+  INNER JOIN "Investment" i ON c.id = i."companyId"
+  GROUP BY c.id
+`;
+
+  res.json(companies);
+});
+
 investmentsRouter.post("/", async (req, res, next) => {
   try {
     const { companyId, investorName, amount, comment, password } = req.body;

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router";
 import API from "../../api/index.api";
 import Page from "../../components/Page";
 import SearchInput from "../../components/SearchInput";
@@ -60,11 +61,17 @@ const sortOptions = [
 ];
 
 function HomePage() {
+  const [searchParams] = useSearchParams();
   const [startups, setStartups] = useState([]);
-  const [selectedSortOption, setSelectedSortOption] = useState(sortOptions[0]);
+  const initialSortOption =
+    sortOptions.find(
+      (sortOption) => sortOption.value === searchParams.get("orderBy")
+    ) || sortOptions[0];
+  const [selectedSortOption, setSelectedSortOption] =
+    useState(initialSortOption);
 
   useEffect(() => {
-    API.companies.getCompanies().then(setStartups);
+    API.companies.getAllCompanies().then(setStartups);
   }, []);
 
   const sortedStartups = useMemo(() => {

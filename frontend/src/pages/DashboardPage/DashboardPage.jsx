@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router";
 import API from "../../api/index.api";
-import Dropdown from "../../components/Dropdown";
 import Page from "../../components/Page";
+import SortingDropdown from "../../components/SortingDropdown";
 import Table from "../../components/Table";
 
 const columns = [
@@ -57,11 +58,17 @@ const sortOptions = [
 ];
 
 function DashboardPage() {
+  const [searchParams] = useSearchParams();
   const [startups, setStartups] = useState([]);
-  const [selectedSortOption, setSelectedSortOption] = useState(sortOptions[0]);
+  const initialSortOption =
+    sortOptions.find(
+      (sortOption) => sortOption.value === searchParams.get("orderBy")
+    ) || sortOptions[0];
+  const [selectedSortOption, setSelectedSortOption] =
+    useState(initialSortOption);
 
   useEffect(() => {
-    API.companies.getCompanies().then(setStartups);
+    API.investments.getInvestmentsOverview().then(setStartups);
   }, []);
 
   const sortedStartups = useMemo(() => {
@@ -101,7 +108,7 @@ function DashboardPage() {
           투자 현황
         </h1>
 
-        <Dropdown
+        <SortingDropdown
           options={sortOptions}
           selectedOption={selectedSortOption}
           setSelectedOption={setSelectedSortOption}
