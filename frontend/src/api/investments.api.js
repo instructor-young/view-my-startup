@@ -23,10 +23,29 @@ async function deleteInvestment(investmentId, password) {
   return data;
 }
 
+async function updateInvestment(investmentId, dto) {
+  const response = await apiClient.put(`/investments/${investmentId}`, dto);
+  const data = response.data;
+
+  return data;
+}
+
+async function checkInvetmentPassword(investmentId, password) {
+  const response = await apiClient.post(
+    `/investments/${investmentId}/check-password`,
+    { password }
+  );
+  const data = response.data;
+
+  return data;
+}
+
 const investmentsAPI = {
   getInvestmentsOverview,
   invest,
   deleteInvestment,
+  updateInvestment,
+  checkInvetmentPassword,
 };
 
 export default investmentsAPI;

@@ -30,8 +30,7 @@ const columns = [
       <div className="flex items-center justify-between w-full">
         <p className="px-4">{row[column.name]}</p>
         <InvestmentKebabButton
-          investmentId={row.id}
-          companyId={row.companyId}
+          investment={row}
           refetchStartup={row.refetchStartup}
         />
       </div>

@@ -4,16 +4,21 @@ import Button from "../../../components/Button";
 import Modal from "../../../components/Modal";
 import PasswordInput from "../../../components/PasswordInput";
 import TextInput from "../../../components/TextInput";
-import { useModal } from "../../../contexts/modal.context";
-import InvestmentSuccessModal from "./InvestmentSuccessModal";
 
-function NewInvestmentModal({ close, startup, onInvestSuccess }) {
-  const [investorName, setInvestorName] = useState("");
-  const [amount, setAmount] = useState("");
-  const [comment, setComment] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const modal = useModal();
+function EditInvestmentModal({
+  close,
+  password,
+  startup,
+  investment,
+  onEditSuccess,
+}) {
+  const [investorName, setInvestorName] = useState(investment.investorName);
+  const [amount, setAmount] = useState(investment.amount);
+  const [comment, setComment] = useState(investment.comment);
+  const [newPassword, setNewPassword] = useState(investment.password);
+  const [newPasswordConfirm, setNewPasswordConfirm] = useState(
+    investment.passwordConfirm
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,24 +27,22 @@ function NewInvestmentModal({ close, startup, onInvestSuccess }) {
       !investorName ||
       !amount ||
       !comment ||
-      !password ||
-      password !== passwordConfirm
+      newPassword !== newPasswordConfirm
     )
       return alert("잘못된 입력입니다");
 
     const data = {
-      companyId: startup.id,
+      password,
       investorName,
       amount,
       comment,
-      password,
+      newPassword,
     };
 
-    await API.investments.invest(data);
+    await API.investments.updateInvestment(investment.id, data);
     close();
 
-    await modal.open((close) => <InvestmentSuccessModal close={close} />);
-    onInvestSuccess();
+    onEditSuccess();
   };
 
   return (
@@ -84,17 +87,17 @@ function NewInvestmentModal({ close, startup, onInvestSuccess }) {
         />
 
         <PasswordInput
-          label={"비밀번호"}
-          placeholder={"비밀번호를 입력해 주세요"}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          label={"새로운 비밀번호"}
+          placeholder={"(선택) 새로운 비밀번호를 입력해 주세요"}
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
         />
 
         <PasswordInput
-          label={"비밀번호 확인"}
-          placeholder={"비밀번호를 다시 한 번 입력해 주세요"}
-          value={passwordConfirm}
-          onChange={(e) => setPasswordConfirm(e.target.value)}
+          label={"새로운 비밀번호 확인"}
+          placeholder={"(선택) 새로운 비밀번호를 다시 한 번 입력해 주세요"}
+          value={newPasswordConfirm}
+          onChange={(e) => setNewPasswordConfirm(e.target.value)}
         />
 
         <div className="grid grid-cols-2 gap-x-4 px-6">
@@ -110,4 +113,4 @@ function NewInvestmentModal({ close, startup, onInvestSuccess }) {
   );
 }
 
-export default NewInvestmentModal;
+export default EditInvestmentModal;

@@ -35,6 +35,38 @@ investmentsRouter.post("/", async (req, res, next) => {
   }
 });
 
+investmentsRouter.put("/:investmentId", async (req, res, next) => {
+  try {
+    const { investmentId } = req.params;
+    const { password, investorName, amount, comment, newPassword } = req.body;
+    if (!password || !investorName || !amount || !comment)
+      throw new Error("Invalid input");
+    let investment = await prisma.investment.findUnique({
+      where: { id: investmentId },
+    });
+
+    const isValid = await bcrypt.compare(
+      password,
+      investment.encryptedPassword
+    );
+    if (!isValid) throw new Error("Incorrect password");
+
+    const encryptedPassword = newPassword
+      ? await bcrypt.hash(newPassword, 12)
+      : undefined;
+
+    investment = await prisma.investment.update({
+      where: { id: investmentId },
+      data: { investorName, amount, comment, encryptedPassword },
+      omit: { encryptedPassword: true },
+    });
+
+    res.status(200).json(investment);
+  } catch (e) {
+    next(e);
+  }
+});
+
 investmentsRouter.delete("/:investmentId", async (req, res, next) => {
   try {
     const { investmentId } = req.params;
@@ -56,5 +88,27 @@ investmentsRouter.delete("/:investmentId", async (req, res, next) => {
     next(e);
   }
 });
+
+investmentsRouter.post(
+  "/:investmentId/check-password",
+  async (req, res, next) => {
+    try {
+      const { investmentId } = req.params;
+      const { password } = req.body;
+      const investment = await prisma.investment.findUnique({
+        where: { id: investmentId },
+      });
+
+      const isCorrect = await bcrypt.compare(
+        password,
+        investment.encryptedPassword
+      );
+
+      res.status(200).json(isCorrect);
+    } catch (e) {
+      next(e);
+    }
+  }
+);
 
 module.exports = investmentsRouter;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import KebabIcon from "../../../assets/icon/ic_kebab.png";
 import InvestmentTooltipMenu from "./InvestmentTooltipMenu";
 
-function InvestmentKebabButton({ investmentId, companyId, refetchStartup }) {
+function InvestmentKebabButton({ investment, refetchStartup }) {
   const [isTooltipMenuVisible, setIsTooltipMenuVisible] = useState(false);
 
   return (
@@ -13,8 +13,7 @@ function InvestmentKebabButton({ investmentId, companyId, refetchStartup }) {
       <img src={KebabIcon} className="size-6" />
       {isTooltipMenuVisible && (
         <InvestmentTooltipMenu
-          investmentId={investmentId}
-          companyId={companyId}
+          investment={investment}
           refetchStartup={refetchStartup}
         />
       )}
