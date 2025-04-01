@@ -6,9 +6,8 @@ import TableHeader from "./TableHeader";
 
 function Table({ columns, rows, rowsPerPage, enablePagination }) {
   const [searchParams] = useSearchParams();
-  const [currentPage, setCurrentPage] = useState(
-    Number(searchParams.get("page")) || 1
-  );
+  const searchParamsPage = Number(searchParams.get("page")) || 1;
+  const [currentPage, setCurrentPage] = useState(searchParamsPage);
   const [currentPageRows, setCurrentPageRows] = useState([]);
   const totalPagesLength = Math.ceil(rows.length / rowsPerPage);
 
@@ -25,6 +24,10 @@ function Table({ columns, rows, rowsPerPage, enablePagination }) {
     }
   }, [enablePagination, rows, currentPage, rowsPerPage]);
 
+  useEffect(() => {
+    setCurrentPage(searchParamsPage);
+  }, [searchParamsPage]);
+
   return (
     <div>
       <TableHeader columns={columns} />
@@ -36,6 +39,7 @@ function Table({ columns, rows, rowsPerPage, enablePagination }) {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             totalPagesLength={totalPagesLength}
+            shouldUseSearchParams
           />
         </div>
       )}

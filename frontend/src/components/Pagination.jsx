@@ -9,6 +9,7 @@ function Pagination({
   setCurrentPage,
   totalPagesLength,
   size = "md",
+  shouldUseSearchParams = false,
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -27,8 +28,10 @@ function Pagination({
   const goToPage = (page) => () => setCurrentPage(page);
 
   useEffect(() => {
-    searchParams.set("page", currentPage);
-    setSearchParams(searchParams);
+    if (shouldUseSearchParams) {
+      searchParams.set("page", currentPage);
+      setSearchParams(searchParams);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 

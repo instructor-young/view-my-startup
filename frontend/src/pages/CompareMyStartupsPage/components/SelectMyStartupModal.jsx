@@ -4,7 +4,6 @@ import Button from "../../../components/Button";
 import Modal from "../../../components/Modal";
 import SearchInput from "../../../components/SearchInput";
 import { useCompareMyStartup } from "../../../contexts/compareMyStartup.context";
-import RecentlySelectedStartupsSection from "./RecentlySelectedStartupsSection";
 import SearchResultSection from "./SearchResultSection";
 import StartupRow from "./StartupRow";
 
@@ -33,10 +32,10 @@ function SelectMyStartupModal({ close }) {
 
         <SearchInput onSearch={handleSearch} />
 
-        <RecentlySelectedStartupsSection
+        {/* <RecentlySelectedStartupsSection
           compareMyStartup={compareMyStartup}
           close={close}
-        />
+        /> */}
 
         {searchedStartups.length > 0 && (
           <SearchResultSection

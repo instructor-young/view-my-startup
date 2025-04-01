@@ -18,7 +18,7 @@ export function CompareMyStartupProvider({ children }) {
   const selectMyStartup = useCallback(
     (startup) => {
       setSelectedMyStartup(startup);
-      if (selectedCompaniesForComparision.length === null) {
+      if (selectedCompaniesForComparision === null) {
         setSelectedCompaniesForComparision([]);
       }
     },

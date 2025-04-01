@@ -20,6 +20,9 @@ function SearchInput({
       setSearchParams(searchParams);
     }
 
+    searchParams.delete("page");
+    setSearchParams(searchParams);
+
     handleSearch(value);
   };
 

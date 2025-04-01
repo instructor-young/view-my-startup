@@ -127,7 +127,7 @@ function HomePage() {
             <h1 className="text-white font-bold text-xl">전체 스타트업 목록</h1>
 
             <div className="flex items-center gap-4">
-              <SearchInput onSearch={handleSearch} />
+              <SearchInput onSearch={handleSearch} shouldUseSearchParams />
               <SortingDropdown
                 width={200}
                 options={sortOptions}
