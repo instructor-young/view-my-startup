@@ -74,6 +74,7 @@ const sortOptions = [
 function HomePage() {
   const [searchParams] = useSearchParams();
   const [startups, setStartups] = useState([]);
+  const query = searchParams.get("query");
   const initialSortOption =
     sortOptions.find(
       (sortOption) => sortOption.value === searchParams.get("orderBy")
@@ -81,44 +82,30 @@ function HomePage() {
   const [selectedSortOption, setSelectedSortOption] =
     useState(initialSortOption);
 
-  useEffect(() => {
-    API.companies.getAllCompanies().then(setStartups);
-  }, []);
-
-  useEffect(() => {}, [searchParams]);
-
-  const filteredStartups = useMemo(() => {
-    const query = searchParams.get("query") || "";
-    const newStartUps = startups.filter(
-      (startup) =>
-        startup.name.includes(query) ||
-        startup.description.includes(query) ||
-        startup.category.includes(query)
-    );
-
-    return newStartUps;
-  }, [searchParams, startups]);
+  const handleSearch = (query) => {
+    API.companies.getCompanies(query).then(setStartups);
+  };
 
   const sortedStartups = useMemo(() => {
     let newStartUps = [];
     if (selectedSortOption.value === "realInvestmentAmount,desc") {
-      newStartUps = [...filteredStartups].sort(
+      newStartUps = [...startups].sort(
         (a, b) => b.realInvestmentAmount - a.realInvestmentAmount
       );
     } else if (selectedSortOption.value === "realInvestmentAmount,asc") {
-      newStartUps = [...filteredStartups].sort(
+      newStartUps = [...startups].sort(
         (a, b) => a.realInvestmentAmount - b.realInvestmentAmount
       );
     } else if (selectedSortOption.value === "revenue,desc") {
-      newStartUps = [...filteredStartups].sort((a, b) => b.revenue - a.revenue);
+      newStartUps = [...startups].sort((a, b) => b.revenue - a.revenue);
     } else if (selectedSortOption.value === "revenue,asc") {
-      newStartUps = [...filteredStartups].sort((a, b) => a.revenue - b.revenue);
+      newStartUps = [...startups].sort((a, b) => a.revenue - b.revenue);
     } else if (selectedSortOption.value === "numberOfEmployees,desc") {
-      newStartUps = [...filteredStartups].sort(
+      newStartUps = [...startups].sort(
         (a, b) => b.numberOfEmployees - a.numberOfEmployees
       );
     } else if (selectedSortOption.value === "numberOfEmployees,asc") {
-      newStartUps = [...filteredStartups].sort(
+      newStartUps = [...startups].sort(
         (a, b) => a.numberOfEmployees - b.numberOfEmployees
       );
     }
@@ -126,7 +113,11 @@ function HomePage() {
     newStartUps = newStartUps.map((c, i) => ({ ranking: i + 1, ...c }));
 
     return newStartUps;
-  }, [filteredStartups, selectedSortOption]);
+  }, [startups, selectedSortOption]);
+
+  useEffect(() => {
+    handleSearch(query);
+  }, [query]);
 
   return (
     <Page>
@@ -136,7 +127,7 @@ function HomePage() {
             <h1 className="text-white font-bold text-xl">전체 스타트업 목록</h1>
 
             <div className="flex items-center gap-4">
-              <SearchInput />
+              <SearchInput onSearch={handleSearch} />
               <SortingDropdown
                 width={200}
                 options={sortOptions}

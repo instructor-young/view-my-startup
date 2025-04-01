@@ -2,16 +2,25 @@ import { useState } from "react";
 import { useSearchParams } from "react-router";
 import SearchIcon from "../assets/icon/ic_search.png";
 
-function SearchInput() {
+function SearchInput({
+  shouldUseSearchParams = false,
+  onSearch: handleSearch,
+}) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialValue = searchParams.get("query") || "";
+  const initialValue = shouldUseSearchParams
+    ? searchParams.get("query") || ""
+    : "";
   const [value, setValue] = useState(initialValue);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    searchParams.set("query", value);
-    setSearchParams(searchParams);
+    if (shouldUseSearchParams) {
+      searchParams.set("query", value);
+      setSearchParams(searchParams);
+    }
+
+    handleSearch(value);
   };
 
   return (

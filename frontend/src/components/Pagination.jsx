@@ -4,7 +4,12 @@ import LeftArrowIcon from "../assets/icon/ic_arrow_left.png";
 import RightArrowIcon from "../assets/icon/ic_arrow_right.png";
 import PaginationButton from "./PaginationButton";
 
-function Pagination({ currentPage, setCurrentPage, totalPagesLength }) {
+function Pagination({
+  currentPage,
+  setCurrentPage,
+  totalPagesLength,
+  size = "md",
+}) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const goToPrevPage = () => {
@@ -28,8 +33,11 @@ function Pagination({ currentPage, setCurrentPage, totalPagesLength }) {
   }, [currentPage]);
 
   return (
-    <div className="flex items-center gap-x-2 text-lg text-gray-200">
-      <PaginationButton onClick={goToPrevPage}>
+    <div
+      data-size={size}
+      className="flex items-center gap-x-2 text-lg text-gray-200"
+    >
+      <PaginationButton onClick={goToPrevPage} size={size}>
         <img src={LeftArrowIcon} />
       </PaginationButton>
       <div className="flex items-center gap-x-1">
@@ -40,12 +48,13 @@ function Pagination({ currentPage, setCurrentPage, totalPagesLength }) {
               key={index + 1}
               isActive={index + 1 === currentPage}
               onClick={goToPage(index + 1)}
+              size={size}
             >
               {index + 1}
             </PaginationButton>
           ))}
       </div>
-      <PaginationButton onClick={goToNextPage}>
+      <PaginationButton onClick={goToNextPage} size={size}>
         <img src={RightArrowIcon} />
       </PaginationButton>
     </div>

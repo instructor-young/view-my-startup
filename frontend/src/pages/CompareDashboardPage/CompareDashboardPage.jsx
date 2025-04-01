@@ -76,7 +76,7 @@ function CompareDashboardPage() {
     useState(initialSortOption);
 
   useEffect(() => {
-    API.companies.getAllCompanies().then(setStartups);
+    API.companies.getCompanies().then(setStartups);
   }, []);
 
   const sortedStartups = useMemo(() => {

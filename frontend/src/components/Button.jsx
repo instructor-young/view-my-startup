@@ -4,11 +4,13 @@ const buttonVariants = cva("leading-none cursor-pointer", {
   variants: {
     intent: {
       primary:
-        "bg-brand-orange text-white hover:bg-brand-orange/80 active:bg-brand-orange/60 transition",
+        "bg-brand-orange text-white hover:brightness-90 active:brightness-75 transition",
+      secondary: "hover:brightness-95 active:brightness-90 transition",
+      dark: "",
     },
     rounded: {
       true: "rounded-[50px]",
-      false: "",
+      false: "rounded-[10px]",
     },
     size: {
       sm: "h-8 py-1",
@@ -16,7 +18,7 @@ const buttonVariants = cva("leading-none cursor-pointer", {
       lg: "h-12 py-4 font-semibold px-12",
     },
     disabled: {
-      true: "bg-black-100 text-gray-200 cursor-not-allowed",
+      true: "!bg-black-100 !text-gray-200 !cursor-not-allowed",
       false: "",
     },
     outline: {
@@ -30,6 +32,16 @@ const buttonVariants = cva("leading-none cursor-pointer", {
       outline: true,
       className:
         "!text-brand-orange !border-brand-orange !bg-transparent border",
+    },
+    {
+      intent: "secondary",
+      outline: true,
+      className: "!text-gray-100 !border-gray-100 !bg-transparent border",
+    },
+    {
+      intent: "dark",
+      outline: true,
+      className: "!text-gray-200 !border-gray-200 !bg-transparent border",
     },
   ],
   defaultVariants: {
@@ -61,6 +73,7 @@ function Button({
         outline,
         className,
       })}
+      disabled={disabled}
       {...props}
     >
       {children}

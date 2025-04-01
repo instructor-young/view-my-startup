@@ -15,15 +15,17 @@ export const useModal = () => useContext(ModalContext);
 export function ModalProvider({ children }) {
   const closeRef = useRef();
   const [modalElement, setModalElement] = useState(null);
-  const closeFactory = (resolve) => () => {
+  const closeFactory = (resolve, afterCloseCallback) => () => {
     setModalElement(null);
     resolve();
+
+    if (afterCloseCallback) afterCloseCallback();
   };
 
   const open = useCallback(
-    (callback) =>
+    (callback, afterCloseCallback) =>
       new Promise((resolve) => {
-        const close = closeFactory(resolve);
+        const close = closeFactory(resolve, afterCloseCallback);
         const modalElement = callback(close);
         setModalElement(modalElement);
 

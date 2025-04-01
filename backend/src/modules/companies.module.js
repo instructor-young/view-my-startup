@@ -4,7 +4,16 @@ const prisma = require("../db/prisma/client.prisma");
 const companiesRouter = express.Router();
 
 companiesRouter.get("/", async (req, res, next) => {
-  const companies = await prisma.company.findMany();
+  const { search } = req.query;
+
+  let companies = [];
+  if (search) {
+    companies = await prisma.company.findMany({
+      where: { name: { contains: search } },
+    });
+  } else {
+    companies = await prisma.company.findMany();
+  }
 
   res.json(companies);
 });

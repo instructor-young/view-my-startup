@@ -1,7 +1,7 @@
 import { apiClient } from "./index.api";
 
-async function getAllCompanies() {
-  const response = await apiClient.get("/companies");
+async function getCompanies(search) {
+  const response = await apiClient.get("/companies", { params: { search } });
   const data = response.data;
 
   return data;
@@ -15,7 +15,7 @@ async function getCompany(companyId) {
 }
 
 const companiesAPI = {
-  getAllCompanies,
+  getCompanies,
   getCompany,
 };
 
