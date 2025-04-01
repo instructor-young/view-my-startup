@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import API from "../../../api/index.api";
 import Button from "../../../components/Button";
 import Modal from "../../../components/Modal";
@@ -8,9 +8,12 @@ import SearchResultSection from "./SearchResultSection";
 import StartupRow from "./StartupRow";
 
 function SelectStartupsForComparisionModal({ close }) {
-  const [searchedStartups, setSearchedStartups] = useState([]);
-  const [pickedStartups, setPickedStartups] = useState([]);
   const compareMyStartup = useCompareMyStartup();
+  const [searchedStartups, setSearchedStartups] = useState([]);
+  const [pickedStartups, setPickedStartups] = useState(
+    compareMyStartup.selectedCompaniesForComparision || []
+  );
+  const pickedStartupsRef = useRef();
 
   const handleSearch = (keyword) => {
     API.companies
@@ -34,10 +37,17 @@ function SelectStartupsForComparisionModal({ close }) {
   };
 
   useEffect(() => {
+    pickedStartupsRef.current = pickedStartups;
+  }, [pickedStartups]);
+
+  useEffect(() => {
     return () => {
-      compareMyStartup.setSelectedCompaniesForComparision(pickedStartups);
+      compareMyStartup.setSelectedCompaniesForComparision(
+        pickedStartupsRef.current
+      );
     };
-  }, [compareMyStartup, pickedStartups]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Modal close={close}>
