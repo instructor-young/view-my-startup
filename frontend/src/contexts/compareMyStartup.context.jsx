@@ -2,6 +2,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -54,6 +55,23 @@ export function CompareMyStartupProvider({ children }) {
     );
     setComparision(result);
   }, [selectedMyStartup, selectedCompaniesForComparision]);
+
+  useEffect(() => {
+    if (selectedMyStartup) {
+      const prevRecentlySelectedMyStartups = JSON.parse(
+        localStorage.getItem("recentlySelectedMyStartups")
+      );
+      const filteredStartups =
+        prevRecentlySelectedMyStartups?.filter(
+          (s) => s.id !== selectedMyStartup.id
+        ) || [];
+      const newStartups = [...filteredStartups, selectedMyStartup].slice(-5);
+      localStorage.setItem(
+        "recentlySelectedMyStartups",
+        JSON.stringify(newStartups)
+      );
+    }
+  }, [selectedMyStartup]);
 
   const value = useMemo(
     () => ({
