@@ -11,11 +11,11 @@ function RecentlySelectedStartupsSection({
 
   useEffect(() => {
     setRecentlySelectedMyStartups(
-      JSON.parse(localStorage.getItem("recentlySelectedMyStartups"))
+      JSON.parse(localStorage.getItem("recentlySelectedMyStartups")) || []
     );
   }, []);
 
-  if (recentlySelectedMyStartups.length === 0) return null;
+  if (recentlySelectedMyStartups?.length === 0) return null;
 
   return (
     <section>
