@@ -52,20 +52,6 @@ function StartupsForComparision() {
             </p>
           )}
         </div>
-
-        <div className="mt-6 text-center">
-          <Button
-            size={"lg"}
-            onClick={compareMyStartup.compare}
-            disabled={
-              !compareMyStartup.selectedMyStartup ||
-              !compareMyStartup.selectedCompaniesForComparision ||
-              compareMyStartup.selectedCompaniesForComparision.length === 0
-            }
-          >
-            기업 비교하기
-          </Button>
-        </div>
       </>
     </div>
   );

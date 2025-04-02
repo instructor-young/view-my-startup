@@ -39,7 +39,7 @@ function NewInvestmentModal({ close, startup, onInvestSuccess }) {
     close();
 
     await modal.open((close) => <InvestmentSuccessModal close={close} />);
-    onInvestSuccess();
+    if (onInvestSuccess) onInvestSuccess();
   };
 
   return (
@@ -50,7 +50,12 @@ function NewInvestmentModal({ close, startup, onInvestSuccess }) {
         <div>
           <h6 className="text-lg font-bold text-white mb-4">투자 기업 정보</h6>
           <div className="flex items-center">
-            <div className="size-10 bg-amber-200 rounded-full" />
+            {startup.logoImgUrl ? (
+              <img src={startup.logoImgUrl} className="size-10 rounded-full" />
+            ) : (
+              <div className="size-10 bg-amber-200 rounded-full" />
+            )}
+
             <span className="text-lg font-medium text-white ml-3">
               {startup.name}
             </span>
