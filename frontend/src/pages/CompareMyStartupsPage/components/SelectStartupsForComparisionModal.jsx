@@ -56,7 +56,7 @@ function SelectStartupsForComparisionModal({ close }) {
           비교할 기업 선택하기
         </h3>
 
-        <SearchInput onSearch={handleSearch} />
+        <SearchInput onSearch={handleSearch} autoFocus />
 
         {pickedStartups.length > 0 && (
           <SearchResultSection

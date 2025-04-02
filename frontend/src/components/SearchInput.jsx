@@ -5,6 +5,7 @@ import SearchIcon from "../assets/icon/ic_search.png";
 function SearchInput({
   shouldUseSearchParams = false,
   onSearch: handleSearch,
+  autoFocus = false,
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialValue = shouldUseSearchParams
@@ -41,6 +42,7 @@ function SearchInput({
         placeholder="검색어를 입력해 주세요"
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        autoFocus={autoFocus}
       />
       <img
         src={SearchIcon}

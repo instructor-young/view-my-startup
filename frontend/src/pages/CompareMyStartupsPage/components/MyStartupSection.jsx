@@ -11,6 +11,7 @@ function MyStartupSection() {
   const modal = useModal();
   const [searchParams, setSearchParams] = useSearchParams();
   const compareMyStartup = useCompareMyStartup();
+  const comparision = compareMyStartup.comparision;
   const selectedMyStartup = compareMyStartup.selectedMyStartup;
   const selectedCompaniesForComparision =
     compareMyStartup.selectedCompaniesForComparision;
@@ -42,7 +43,8 @@ function MyStartupSection() {
 
         {selectedMyStartup &&
           selectedCompaniesForComparision &&
-          selectedCompaniesForComparision.length > 0 && (
+          selectedCompaniesForComparision.length > 0 &&
+          !comparision && (
             <Button
               className="flex items-center gap-x-1"
               onClick={handleClickReset}
@@ -51,18 +53,29 @@ function MyStartupSection() {
               <span>전체 초기화</span>
             </Button>
           )}
+
+        {comparision && (
+          <Button
+            className="flex items-center gap-x-1"
+            onClick={compareMyStartup.resetComparision}
+          >
+            다른 기업 비교하기
+          </Button>
+        )}
       </div>
 
       <div className="mt-8 h-[300px] relative flex items-center justify-center bg-black-300 rounded-sm">
         {selectedMyStartup ? (
           <>
             <StartupCard startup={selectedMyStartup} />
-            <button
-              onClick={onClickRemoveMyStartup}
-              className="absolute right-4 top-4 text-gray-100 underline"
-            >
-              선택 취소
-            </button>
+            {!comparision && (
+              <button
+                onClick={onClickRemoveMyStartup}
+                className="absolute right-4 top-4 text-gray-100 underline"
+              >
+                선택 취소
+              </button>
+            )}
           </>
         ) : (
           <button

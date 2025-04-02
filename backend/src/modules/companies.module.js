@@ -1,5 +1,6 @@
 const express = require("express");
 const prisma = require("../db/prisma/client.prisma");
+const { getSurroundingCompanies } = require("../utils/functions.utils");
 
 const companiesRouter = express.Router();
 
@@ -39,8 +40,38 @@ companiesRouter.get("/:companyId", async (req, res, next) => {
   res.json(company);
 });
 
-companiesRouter.post("/:companyId/compare", (req, res, next) => {
+companiesRouter.post("/:companyId/compare", async (req, res, next) => {
+  const companyId = req.params.companyId;
   const companyIdsToCompare = req.body;
+  const companyIds = [companyId, ...companyIdsToCompare];
+
+  const companies = await prisma.company.findMany({
+    where: { id: { in: companyIds } },
+  });
+
+  res.status(200).json(companies);
+});
+
+companiesRouter.get("/:companyId/rank", async (req, res, next) => {
+  const companyId = req.params.companyId;
+  const sorting = req.query.sorting;
+  const [criteria, direction] = sorting.split(",");
+  const orderBy = `"${criteria}" ${direction.toUpperCase()}`;
+  const query = `
+    SELECT
+      *,
+      RANK() OVER (ORDER BY ${orderBy}) AS "rank"
+    FROM "Company"
+  `;
+
+  const companies = await prisma
+    .$queryRawUnsafe(query)
+    .then((companies) =>
+      companies.map((c) => ({ ...c, rank: Number(c.rank) }))
+    );
+  const result = getSurroundingCompanies(companies, companyId, 5);
+
+  res.status(200).json(result);
 });
 
 module.exports = companiesRouter;

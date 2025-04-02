@@ -4,7 +4,13 @@ import Pagination from "./Pagination";
 import TableBody from "./TableBody";
 import TableHeader from "./TableHeader";
 
-function Table({ columns, rows, rowsPerPage, enablePagination }) {
+function Table({
+  columns,
+  rows,
+  rowsPerPage,
+  enablePagination,
+  getIsRowHighlighted,
+}) {
   const [searchParams] = useSearchParams();
   const searchParamsPage = Number(searchParams.get("page")) || 1;
   const [currentPage, setCurrentPage] = useState(searchParamsPage);
@@ -31,7 +37,11 @@ function Table({ columns, rows, rowsPerPage, enablePagination }) {
   return (
     <div>
       <TableHeader columns={columns} />
-      <TableBody columns={columns} rows={currentPageRows} />
+      <TableBody
+        columns={columns}
+        rows={currentPageRows}
+        getIsRowHighlighted={getIsRowHighlighted}
+      />
 
       {enablePagination && (
         <div className="mt-10 flex justify-center">

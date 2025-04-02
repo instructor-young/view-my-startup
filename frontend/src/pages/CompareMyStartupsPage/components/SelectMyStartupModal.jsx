@@ -30,7 +30,7 @@ function SelectMyStartupModal({ close }) {
           나의 기업 선택하기
         </h3>
 
-        <SearchInput onSearch={handleSearch} />
+        <SearchInput onSearch={handleSearch} autoFocus />
 
         {/* <RecentlySelectedStartupsSection
           compareMyStartup={compareMyStartup}
