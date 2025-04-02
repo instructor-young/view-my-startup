@@ -13,6 +13,7 @@ function SelectMyStartupModal({ close }) {
 
   const handleClickStartupRow = (startup) => () => {
     compareMyStartup.selectMyStartup(startup);
+    API.companies.incrementPickAsMyStartup(startup.id);
 
     close();
   };

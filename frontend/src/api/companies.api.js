@@ -30,11 +30,32 @@ async function getCompaniesWithRank(companyId, sorting) {
   return data;
 }
 
+async function incrementPickAsMyStartup(companyId) {
+  const response = await apiClient.put(
+    `/companies/${companyId}/pick-as-my-startup`
+  );
+  const data = response.data;
+
+  return data;
+}
+
+async function incrementPickAsComparisionStartups(companyIds) {
+  const response = await apiClient.post(
+    `/companies/pick-as-comparision-startups`,
+    companyIds
+  );
+  const data = response.data;
+
+  return data;
+}
+
 const companiesAPI = {
   getCompanies,
   getCompany,
   compareCompanies,
   getCompaniesWithRank,
+  incrementPickAsMyStartup,
+  incrementPickAsComparisionStartups,
 };
 
 export default companiesAPI;

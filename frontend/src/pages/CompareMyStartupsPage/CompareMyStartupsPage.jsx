@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Button from "../../components/Button";
 import Page from "../../components/Page";
 import { useCompareMyStartup } from "../../contexts/compareMyStartup.context";
@@ -20,6 +21,12 @@ function CompareMyStartupsPage() {
       />
     ));
   };
+
+  useEffect(() => {
+    return () => {
+      compareMyStartup.reset();
+    };
+  }, []);
 
   return (
     <Page>

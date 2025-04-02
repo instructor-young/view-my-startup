@@ -74,4 +74,38 @@ companiesRouter.get("/:companyId/rank", async (req, res, next) => {
   res.status(200).json(result);
 });
 
+companiesRouter.put(
+  "/:companyId/pick-as-my-startup",
+  async (req, res, next) => {
+    try {
+      const companyId = req.params.companyId;
+      await prisma.company.update({
+        where: { id: companyId },
+        data: { pickAsMyStartupCount: { increment: 1 } },
+      });
+
+      res.status(201).send("OK");
+    } catch (e) {
+      next(e);
+    }
+  }
+);
+
+companiesRouter.post(
+  "/pick-as-comparision-startups",
+  async (req, res, next) => {
+    try {
+      const companyIds = req.body;
+      await prisma.company.updateMany({
+        where: { id: { in: companyIds } },
+        data: { pickAsComparisionCount: { increment: 1 } },
+      });
+
+      res.status(201).send("OK");
+    } catch (e) {
+      next(e);
+    }
+  }
+);
+
 module.exports = companiesRouter;

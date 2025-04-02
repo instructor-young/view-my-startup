@@ -45,6 +45,9 @@ function SelectStartupsForComparisionModal({ close }) {
       compareMyStartup.setSelectedCompaniesForComparision(
         pickedStartupsRef.current
       );
+      API.companies.incrementPickAsComparisionStartups(
+        pickedStartupsRef.current.map((s) => s.id)
+      );
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
